@@ -1,0 +1,419 @@
+*
+{
+	padding: 0px;
+	margin: 0px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+/*Rendering Map*/
+#map
+{
+	position: absolute;
+	height: 99%;
+	width: 100%;
+	z-index: 0;
+}
+#map:hover
+{
+	cursor: pointer;
+}
+#legend
+{
+	display: block;
+	z-index: 1;
+	top: 60px;
+	right:12px;
+	color: black;
+	position: absolute;
+	font-family: 'calibri';
+	font-size: 12px;
+	background-color: #fff;
+	border-radius: 2px;
+	padding-left: 4px;
+	padding-right: 4px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+    border: 1px solid black;
+    text-align: left;
+
+}
+#container
+{
+	font-family: 'calibri';
+	width: 100%;
+	text-align: left;
+}
+
+#text
+{
+	font-size: 12px;
+}
+
+#map1
+{
+	position: relative;
+	height: 100%;
+	width: 100%;
+}
+
+#baselayer
+{
+	margin-top: 5px;
+	z-index: 1;
+	font-size: 13px;
+	font-family: Futura Md BT;
+	position: relative;
+	display: flex;
+	background: transparent;
+}
+
+#navigationPannel
+{
+	/*background: #f9f1ec;*/
+	background: white;
+	width: 28%;
+}
+
+#nd-navigationPannel
+{
+	height: 39px;
+	width: 72%;
+	margin-left: 3px;
+	background: #f0f0f0;
+	display: flex;
+}
+
+#search
+{
+	width: 86%;
+	padding-left:5px;
+	margin-top: 6px;
+	margin-left: 10px;
+	border: 1px solid lightgrey;
+	height: 29px;
+	background-color: white;
+}
+
+#searchIcon
+{
+	margin-left: 7px;
+	margin-top: 6px;
+	height: 25px;
+	width: 25px;
+}
+
+#analyse
+{
+	text-align: center;
+	background: #04b7f5;
+	border: transparent;
+	color: white;
+	cursor: pointer;
+	padding-top: 2px;
+	width: 95%;
+	margin-top: 5px;
+	margin-left: 10px;
+	margin-bottom: 5px;
+}
+
+#analyze:hover
+{
+	background: #079dd2;
+}
+#user
+{
+	margin-left: 9px;
+}
+
+/*
+#login-user
+{
+	float: right;
+	margin-right: 20px;
+	margin-top: 5px;
+	border: transparent;
+	background-color: #2693e0;
+	padding: 1.5px;
+	font-size: 16px;
+	cursor: pointer;
+	border-radius: 2px;
+	width: 50px;
+	text-align: center;
+	font-family: Arial, Helvetica, sans-serif;
+	transition: 0.9 ease;
+}
+
+#login-user:hover
+{
+	background: #1572b4;
+	color: white;
+	border: transparent;
+}
+*/
+
+#login-user-icon
+{
+	float: right;
+    display: flex;
+}
+
+#user
+{
+	float: left;
+	margin-top: 10px;
+    font-size: 12px;
+}
+
+#login-icon
+{
+	width: 25px;
+	height: 25px;
+	float: right;
+	margin-left: 5px;
+	cursor: pointer;
+	margin-top: 6px;
+}
+
+#fastInfoButtons
+{
+	width: 88%;
+	display: flex;
+}
+
+.fastInfo
+{
+	font-size: 14px;
+	font-weight: bold;
+	margin-left: 70px;
+	padding: 3px;
+	margin-top: 5px;
+	cursor: pointer;
+}
+
+.FastIcons
+{
+	margin-left: 15px;
+	margin-top: 8px;
+	height: 20px;
+	width: 20px;
+}
+.FastIcons:hover
+{
+	cursor: pointer;
+}
+
+.fastInfo:hover
+{
+	color: orangered;
+}
+
+#dashboard
+{
+	color: black;
+}
+
+#baselayer-nd
+{
+	margin-top: 5px;
+	z-index: 1;
+	font-size: 13px;
+	font-family: Futura Md BT;
+	position: relative;
+	background: #f0f0f0;
+	width: 28%;
+}
+
+#fromFastInfoDashboard
+{
+	width: 100%;
+}
+
+#landingPage
+{
+	z-index: 1;
+	display: block;
+	position: relative;
+	overflow-y: hidden;
+}
+
+
+#firtLandingImageDIV
+{
+	width: 30%;
+	height: 200px;
+	float: left;
+}
+
+#pic
+{
+	width: 30%;
+	float: left;
+	position: absolute;
+	height: 99%;
+}
+
+#description
+{
+	margin-top: 3px;
+	display: flex;
+}
+
+#other
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 17px;
+	width: 69%;
+	float: right;
+	margin-left: 8px;
+}
+
+#scndLandingImageDIV
+{
+	display: flex;
+	width: 100%;
+	margin-top: 6px;
+	position: relative;
+	top: -100%; /* Initially positioned outside the viewport on the right */
+  	transition: right 1s ease; /* Transition property */
+}
+
+#Overview
+{
+	width: 100%;
+	background: deepskyblue;
+	color: white;
+	margin-top: 2px;
+	padding-top: 5px;
+	padding-left: 3px;
+	padding-right: 3px;
+	padding-bottom: 3px;
+	position: relative;
+	right: -100%; /* Initially positioned outside the viewport on the right */
+  	transition: right 1s ease; /* Transition property */
+}
+
+#leftDiv
+{
+	color: white;
+	width: 60%;
+	height: 329px;
+	background: #F38510;
+}
+
+#rightDiv
+{
+	border: 1px solid grey;
+	margin-left: 5px;
+	width: 40%;
+	height: 329px;
+}
+
+#below
+{
+	border: 1px solid grey;
+	width: 100%;
+	margin-top: 4px;
+	height: 300px;
+	position: relative;
+	background: #B00870;
+	left: -100%; /* Initially positioned outside the viewport */
+  	transition: left 1s ease; /* Transition property */
+}
+#purposeOfThePortal
+{
+	height: 80%;
+	width: 97%;
+	padding-left: 5px;
+	padding-top: 5px;
+	padding-right: 5px;
+	color: white;
+}
+/*
+#more
+{
+	margin-left: 2px;
+	color: orange;
+	font-size: 20;
+	font-weight: bold;
+	transition-duration: 200ms;
+}
+
+#more:hover
+{
+	transform: rotate(90deg);
+}
+
+*/
+
+#listContainer
+{
+	
+	position: relative;
+	height: 97%;
+	margin-top: 18px;
+	margin-left: 10px;
+}
+#items_
+{
+	margin-left: 20px;
+	font-size: 16px;
+}
+
+.list
+{
+	margin-top: 3px;
+	cursor: pointer;
+}
+
+.layer_legend_:hover
+{
+	cursor: pointer;
+}
+
+.incidentAddress_
+ {
+   background: #f2f2f2;
+   border-bottom: 1px solid grey;
+   font-family: Arial, Helvetica, sans-serif;
+   font-size: 11px;
+   padding: 2px;
+   text-align: center;
+
+ }
+ .incidentAddress_:hover
+ {
+   cursor: pointer;
+   background: #363636;
+   color: white;
+ }
+
+#fromFastInfoUpdates
+{
+	text-align: center;
+}
+
+#fromFastInfoAlerts
+{
+	text-align: center;
+}
+
+#fromFastInfoNews
+{
+	text-align: center;
+}
+
+#fromFastInfoAboutUs
+{
+	text-align: center;
+}
+
+#downloadIcon
+{
+	height: 20px;
+	width: 20px;
+}
+
+#fromFastInfoUpdates
+{
+	height: 300px;
+	overflow-y: auto;
+}

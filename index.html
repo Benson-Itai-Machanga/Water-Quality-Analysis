@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/basestylelayer.css">
+	<link rel="stylesheet" type="text/css" href="css/net.css">
+	<link rel="stylesheet" type="text/css" href="css/leaflet.css">
+	<link rel="stylesheet" type="text/css" href="css/waterQuality.css">
+	<link rel="stylesheet" type="text/css" href="css/login.css">
+	<script src="libs/jquery.js"></script>
+	<script src="libs/chartjs.js"></script>
+	<script src="leaflet/leaflet.js"></script>
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	<title>Water Quality Analysis</title>
+</head>
+<style type="text/css">
+	.loogin
+	{
+		display: none;
+	}
+</style>
+<body id="body" style="overflow-y: hidden;">
+	<!--login Page-->		
+		<div id="logie" class="loogin" style="background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(icons/pexels-pixabay-41953.jpg);">
+		    <div class="login-container">
+		            <div id="theName">
+		            	<img src="icons/wceBlu.png" id="loggo">
+	           		</div>
+			        <div id="loginForm" method="post">
+			            <input class="inputs_" type="text" id="username" name="username" placeholder="username" required>
+			            <br>
+			            <input  class="inputs_" type="password" id="password" name="password" placeholder="password" required>
+			            <br>
+			            <button id="login" type="submit">Login</button>
+			        </div>
+		        <div id="output_"></div>
+		    </div>	
+		</div>
+<!--login Page-->
+	<div id="theBaseMainContainer">
+		<div id="map" style="display:none;"></div>
+		<div id="baselayer">
+			<div id="navigationPannel">
+				<div style="display: flex;">
+					<input id="search" type="text" name="" placeholder="search here"><img id="searchIcon" src="icons/search.png">
+				</div>
+			</div>
+			<div id="nd-navigationPannel">
+				<!--div>
+					<meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin">
+					<meta name="google-signin-client_id" content="515249115383-hi6lsqdmhc85fc0c87ns24e4gna0f4ph.apps.googleusercontent.com">
+					<div class="g-signin2" data-onsuccess="onSignIn"></div>
+					 < Display user information>
+		  			 <div id="user-info"></div>
+				</div-->
+				<div id="fastInfoButtons">
+					<img class="FastIcons" id="homeButton" src="icons/home.png">
+					<div id="dashboard" class="fastInfo" target="fromFastInfoDashboard"> Dashboard</div>
+					<!--img class="FastIcons" src="icons/dashboard_.png"-->
+					<div id="updates" class="fastInfo" target="fromFastInfoUpdates"> Updates</div>
+					<!--img class="FastIcons" src="icons/arrow.png"-->
+					<div id="alerts" class="fastInfo" target="fromFastInfoAlerts"> Alerts</div>
+					<!--img class="FastIcons" src="icons/caution.png"-->
+					<div id="news" class="fastInfo" target="fromFastInfoNews"> News</div>
+					<!--img class="FastIcons" src="icons/newspaper.png"-->
+					<div id="about" class="fastInfo" target="fromFastInfoAboutUs"> About Us</div>
+					<!--div id="download" class="fastInfo" target="fromFastInfoDownload">
+						<img id="downloadIcon" src="icons/download.png">
+					</div-->
+					<!--img class="FastIcons" src="icons/info.png"-->
+				</div>
+				<div id="login-user-icon">
+					<img id="login-icon" src="icons/people.png">
+					<div id="user"><i></i></div>
+				</div>
+			</div>
+		</div>
+		<div id="resultsDivInner"></div>
+		<div id="baselayer-nd">
+			<div class="fromFastInfo" id="fromFastInfoDashboard" style="display:none;">
+				<button id="analyse">Analyze</button>
+				<div class="target-item" id="waterQuality">
+					<div id="waterQtyMainMenu">
+							<div id="waterQualityMenu"-->
+								<!--button class="waterQualityButtons" id="post">DOWNLOAD DATA</button-->
+								<!--button class="waterQualityButtons" id="analyse">ANALYSE DATA</button-->
+							</div>
+							<div id="waterQualityOptions">
+								<select id="select_year"><option>Select year</option></select>
+								<select id="select"><option>Select month</option></select>
+								<select id="sample">
+								  <option>Select sample</option>
+								  <option>pH</option>
+								  <option>Cl</option>
+								</select>  
+							</div>	
+							<div id="myChartDiv" class="stats" style="border: 1px solid #DBE3E6">
+							  <canvas id="myChart"></canvas>
+							</div>
+					</div>
+					<div id="stats">
+						  <div id="StatisticsMenu">
+						  	 Select Date:
+							 <select id="DayQuery">
+							   <option>select day</option>
+							 </select>
+							 <button id="getDailyStats">Get Statistics</button>
+						  </div>
+						  <div id="StatisticsResults">	 
+							  <table class="DailySamplesStats">
+							    <tr id="waterQtdRows" >
+							      <th class="waterQtd">No. of Samples<i id="noSample"></i></th>
+							      <th class="waterQtd">Average Cl<i id="avgCl"></i></th>
+							      <th class="waterQtd">Average pH<i id="avgpH"></i></th>
+							    </tr>
+							  </table>
+
+							  <table class="DailySamplesStats">
+								  <tr>
+								    <th class="waterQtd">max Cl<i id="maxCl">&nbsp;</i></th>
+								    <th class="waterQtd">min Cl<i id="minCl">&nbsp;</i></th>
+								    <th class="waterQtd">max pH<i id="maxpH">&nbsp;</i></th>
+								    <th class="waterQtd">min pH<i id="minpH">&nbsp;</i></th>
+								  </tr>
+								  <tr>
+								    <td class="waterQtd">Location</td>
+								    <td class="waterQtd">Location</td>
+								    <td class="waterQtd">Location</td>
+								    <td class="waterQtd">Location</td>
+								  </tr>
+								  <tr id="waterQtdIncidentData_TableRow">
+								    <td class="waterQtd"><div class="waterQtdIncidentData" id="maxClSuburbs"></div></td>
+								    <td class="waterQtd"><div class="waterQtdIncidentData" id="minClSuburbs"></div></td>
+								    <td class="waterQtd"><div class="waterQtdIncidentData" id="maxPHSuburbs"></div></td>
+								    <td class="waterQtd"><div class="waterQtdIncidentData" id="minPHSuburbs"></div></td>
+								  </tr>
+							  </table>
+						  </div>	
+					</div>		
+				</div>
+			</div>
+			<div class="fromFastInfo" id="fromFastInfoUpdates" style="display:none;">
+				Updates will be displayed here!
+			</div>
+			<div class="fromFastInfo" id="fromFastInfoAlerts" style="display:none;">
+				Alerts will be displayed here!
+			</div>
+			<div class="fromFastInfo" id="fromFastInfoNews" style="display:none;">
+				News will appear here!
+			</div>
+			<div class="fromFastInfo" id="fromFastInfoAboutUs" style="display:none;">
+				This Geoportal Prototype for water quality analysis was Developed by Benson I Machanga
+			</div>
+		</div>
+
+		<div id="landingPage">
+			<div id="description">
+				<div id ="firtLandingImageDIV">
+					<img id="pic" src="icons/pexels-tasveerwala-2837863.jpg">
+				</div>
+				<!--div style="display:block;"-->
+					<div id="other" style="display:block;">
+						<div id="Overview">
+							A geoportal for the city of Masvingo is an online platform designed to provide comprehensive analysis and visualization of water quality data, with a focus on pH and chlorine levels. This geoportal serves as a centralized hub for accessing, analyzing, and interpreting water quality information relevant to the city's residents, policymakers, and stakeholders.
+						</div>
+						<div id="scndLandingImageDIV">
+							<div id="leftDiv">
+								<div id="listContainer">
+									Ability To:
+									<ul id="items_">
+									    <li class="list">Analyze Monthly Trends</li>
+									    <li class="list">Analyze Daily Trends</li>
+									    <li class="list">Calculate Daily Minimum and Maximun Chlorine Levels</li>
+									    <li class="list">Calculate Daily Minimum and Maximun pH Levels</li>
+									    <li class="list">Calculate daily Average Chlorine</li>
+									    <li class="list">Calculate daily Average pH</li>
+									    <li class="list">Compute Number Of Samples</li>
+									    <li class="list">Visualise The Trends Graphically</li>
+									    <li class="list">Map The Locations</li>
+									</ul>
+								</div>
+						    </div>
+						    <div id="rightDiv">
+						    	<div id="map1"></div>
+						    </div>
+						</div>
+						<div id="below">
+							<div id="purposeOfThePortal">
+								The overall objective of this prototype is to contribute to the sustainable development of Masvingo City by appreciating technology to optimize water quality analysis. By promoting efficiency and accessibility, the geoportal will benefit the organization by providing insights. Ultimately, this initiative aligns with the global trend of employing technological advancements for improved environmental monitoring and underscores the commitment to ensuring clean and safe water resources for the community.
+							</div>
+						</div>
+				    </div>
+				    <!--div id="below"></div>
+			    </div-->
+			</div>
+		</div>
+	</div>
+	<div class="legend" id="legend" style="display:none;">Legend</div>
+	<script src="js/BenBetterWMS.js"></script>	
+	<script src="js/map.js"></script>
+	<script src="js/spatialRenderer.js"></script>
+	<div id="layerSwitch" disabled='true'>
+		<script src="js/layerSwitcher.js"></script>
+	</div>
+</body>
+	<script src="js/login.js"></script>
+	<script src="js/waterQuality.js"></script>
+	<script src="js/searchFile.js"></script>
+</html>
